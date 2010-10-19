@@ -19,7 +19,7 @@ using System.ComponentModel;
 
 namespace Hacker_News
 {
-    public class News // : INotifyPropertyChanged
+    public class News
     {
         public string nextId { get; set; }
         public string version { get; set; }
@@ -86,7 +86,7 @@ namespace Hacker_News
                 StreamReader txt = new StreamReader(rv, encoding);
                 processJsonString(txt);
             }
-        }  
+        }
             
         // Constructor
         public MainPage()
@@ -94,7 +94,7 @@ namespace Hacker_News
             InitializeComponent();
 
             HttpWebRequest request = HttpWebRequest.Create("http://api.ihackernews.com/page") as HttpWebRequest;
-            request.Accept = "application/json"; //atom+xml";  
+            request.Accept = "application/json"; //atom+xml";
             request.BeginGetResponse(RequestCallback, request);
         }
     }
