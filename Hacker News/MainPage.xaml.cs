@@ -26,7 +26,7 @@ namespace Hacker_News
         public ObservableCollection<Article> items { get; set; }
     }
 
-    public class Article : INotifyPropertyChanged
+    public class Article
     {
         public string title { get; set; }
         public string url { get; set; }
@@ -35,23 +35,21 @@ namespace Hacker_News
         public int points { get; set; }
         public string postedAgo { get; set; }
         public string postedBy { get; set; }
+    }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(string info)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }
-        }
+    public class AsyncState
+    {
+        public HttpWebRequest request { get; set; }
+        public PivotItem page { get; set; }
     }
 
     public partial class MainPage : PhoneApplicationPage
     {
-        void processJsonString(StreamReader sr)
+        // public News news_data;
+
+        void processJsonString(StreamReader sr, PivotItem page)
         {
-            News news_data;
-            
+            News news_data = new News();
             Newtonsoft.Json.JsonSerializer json = new Newtonsoft.Json.JsonSerializer();
             // do i even need these?
             json.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
@@ -66,36 +64,59 @@ namespace Hacker_News
             reader.Close();
 
             // I've got to do it to avoid thread locking issues ...
+            // TODO: Remove this by making the News class an INotifyPropertyChanged type?
             this.Dispatcher.BeginInvoke(
                 () =>
                 {
-                    news.DataContext = news_data;
-                    newest.DataContext = news_data;
+                    // news.DataContext = news_data;
+                    page.DataContext = news_data;
                 }
             );
         }
 
         private void RequestCallback(IAsyncResult result)
         {
-            var request = result.AsyncState as HttpWebRequest;
+            var state = result.AsyncState as AsyncState;
+            var request = state.request as HttpWebRequest;
+            var page = state.page as PivotItem;
             var response = request.EndGetResponse(result);
             if (response != null)
             {
                 Stream rv = response.GetResponseStream();
                 UTF8Encoding encoding = new UTF8Encoding();
                 StreamReader txt = new StreamReader(rv, encoding);
-                processJsonString(txt);
+                processJsonString(txt, page);
             }
+        }
+
+        public void populatePageWithUrl(PivotItem page, string Url)
+        {
+            AsyncState state = new AsyncState();
+            HttpWebRequest request = HttpWebRequest.Create(Url) as HttpWebRequest;
+            request.Accept = "application/json"; //atom+xml";
+            state.request = request;
+            state.page = page;
+            request.BeginGetResponse(RequestCallback, state);
         }
             
         // Constructor
         public MainPage()
         {
             InitializeComponent();
+            // news.DataContext = news_data;
 
-            HttpWebRequest request = HttpWebRequest.Create("http://api.ihackernews.com/page") as HttpWebRequest;
-            request.Accept = "application/json"; //atom+xml";
-            request.BeginGetResponse(RequestCallback, request);
+            populatePageWithUrl(news, "http://api.ihackernews.com/page");
+            populatePageWithUrl(newest, "http://api.ihackernews.com/new");
+            // populatePageWithUrl(comments, "http://api.ihackernews.com/newcomments");
+            populatePageWithUrl(ask, "http://api.ihackernews.com/ask");
+
+        }
+
+        private void title_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var selected_url = ((Hacker_News.Article)(((System.Windows.FrameworkElement)(sender)).DataContext)).url;
+            Browser.url = selected_url;
+            NavigationService.Navigate(new Uri("/Browser.xaml", UriKind.Relative));
         }
     }
 }

@@ -1,14 +1,14 @@
-<Hacker_News:News xmlns:Hacker_News="clr-namespace:Hacker_News" nextId="Eros sodales pharetra" version="Parturient nibh nisi viverra placerat">
+﻿<Hacker_News:News xmlns:Hacker_News="clr-namespace:Hacker_News" nextId="Eros sodales pharetra" version="Parturient nibh nisi viverra placerat">
 	<Hacker_News:News.items>
-		<Hacker_News:Article commentCount="19" id="62" points="72" postedAgo="Cras class" postedBy="Aenean nam aliquam integer" title="Curae curabitur sed vestibulum" url="Donec dis adipiscing"/>
-		<Hacker_News:Article commentCount="53" id="38" points="76" postedAgo="Quisque parturient vestibulum" postedBy="Est vivamus vestibulum phasellus" title="Hac leo mauris" url="Etiam mus"/>
-		<Hacker_News:Article commentCount="47" id="31" points="44" postedAgo="Consequat maecenas convallis" postedBy="Fusce lorem" title="Duis morbi aliquam aliquet" url="Nullam nec nulla adipiscing"/>
-		<Hacker_News:Article commentCount="16" id="77" points="57" postedAgo="Nunc parturient blandit commodo" postedBy="Conubia praesent cubilia" title="Accumsan dignissim" url="Non proin"/>
-		<Hacker_News:Article commentCount="60" id="52" points="16" postedAgo="Elementum bibendum facilisis aptent" postedBy="Auctor dapibus per" title="Fermentum amet sed" url="Dictumst vestibulum egestas"/>
-		<Hacker_News:Article commentCount="16" id="62" points="32" postedAgo="Euismod eleifend fringilla sem feugiat" postedBy="Augue sit vestibulum" title="Facilisi vel" url="Congue adipiscing ante"/>
-		<Hacker_News:Article commentCount="42" id="37" points="82" postedAgo="Gravida iaculis habitasse faucibus" postedBy="Cursus nam habitant dictum lacinia" title="Inceptos lectus hendrerit sed" url="Dis dolor arcu est parturient"/>
-		<Hacker_News:Article commentCount="36" id="30" points="52" postedAgo="Libero hac leo" postedBy="Vestibulum vestibulum himenaeos" title="Laoreet diam" url="Ligula adipiscing"/>
-		<Hacker_News:Article commentCount="68" id="81" points="70" postedAgo="Litora eget natoque fames posuere" postedBy="Elit mus potenti" title="Parturient pretium" url="Interdum lobortis felis"/>
-		<Hacker_News:Article commentCount="89" id="39" points="46" postedAgo="Nec non vestibulum" postedBy="Ipsum enim luctus" title="Justo imperdiet nascetur rhoncus erat" url="Vestibulum adipiscing"/>
+		<Hacker_News:Article commentCount="19" id="62" points="72" postedAgo="Cras class" postedBy="Aenean nam aliquam integer" title="Cras class curae nam aliquam maecenas aenean duis sed praesent mauris" url="Donec dis adipiscing"/>
+		<Hacker_News:Article commentCount="53" id="38" points="76" postedAgo="Quisque parturient vestibulum" postedBy="Est vivamus vestibulum phasellus" title="Integer quisque nullam accumsan vivamus nunc" url="Etiam mus"/>
+		<Hacker_News:Article commentCount="47" id="31" points="44" postedAgo="Consequat maecenas convallis" postedBy="Fusce lorem" title="Aliquam aliquet amet bibendum aptent donec etiam dictumst auctor dis fusce" url="Nullam nec nulla adipiscing"/>
+		<Hacker_News:Article commentCount="16" id="77" points="57" postedAgo="Nunc parturient blandit commodo" postedBy="Conubia praesent cubilia" title="Ante eleifend facilisi arcu congue blandit faucibus cursus est hac diam" url="Non proin"/>
+		<Hacker_News:Article commentCount="60" id="52" points="16" postedAgo="Elementum bibendum facilisis aptent" postedBy="Auctor dapibus per" title="Habitant commodo conubia inceptos interdum dictum cubilia" url="Dictumst vestibulum egestas"/>
+		<Hacker_News:Article commentCount="16" id="62" points="32" postedAgo="Euismod eleifend fringilla sem feugiat" postedBy="Augue sit vestibulum" title="Lectus leo eget elit dapibus mus" url="Congue adipiscing ante"/>
+		<Hacker_News:Article commentCount="42" id="37" points="82" postedAgo="Gravida iaculis habitasse faucibus" postedBy="Cursus nam habitant dictum lacinia" title="Libero egestas ligula euismod nec non per" url="Dis dolor arcu est parturient"/>
+		<Hacker_News:Article commentCount="36" id="30" points="52" postedAgo="Libero hac leo" postedBy="Vestibulum vestibulum himenaeos" title="Sed feugiat enim sem sit lobortis erat vel nam litora eros" url="Ligula adipiscing"/>
+		<Hacker_News:Article commentCount="68" id="81" points="70" postedAgo="Litora eget natoque fames posuere" postedBy="Elit mus potenti" title="Gravida nibh luctus nascetur lorem nisi magnis morbi iaculis nisl pharetra sed" url="Interdum lobortis felis"/>
+		<Hacker_News:Article commentCount="89" id="39" points="46" postedAgo="Nec non vestibulum" postedBy="Ipsum enim luctus" title="Dis est hac placerat mattis pulvinar leo mus mauris sagittis" url="Vestibulum adipiscing"/>
 	</Hacker_News:News.items>
 </Hacker_News:News>

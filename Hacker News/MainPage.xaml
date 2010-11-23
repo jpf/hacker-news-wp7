@@ -1,16 +1,8 @@
-﻿<phone:PhoneApplicationPage
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" 
-    xmlns:local="clr-namespace:Hacker_News" 
+﻿<phone:PhoneApplicationPage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" xmlns:local="clr-namespace:Hacker_News" xmlns:Custom="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
     x:Class="Hacker_News.MainPage"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
-    shell:SystemTray.IsVisible="True" DataContext="{Binding}">
+    d:DesignWidth="480" d:DesignHeight="768"
+    shell:SystemTray.IsVisible="True" DataContext="{Binding}" mc:Ignorable="d">
 	<phone:PhoneApplicationPage.Resources>
 		<DataTemplate x:Key="ItemTemplate">
 			<Grid Height="89" Width="447">
@@ -21,9 +13,9 @@
 				<TextBlock Text="{Binding url}" VerticalAlignment="Top" d:LayoutOverrides="Width" Margin="0,32,0,0"/>
 			</Grid>
 		</DataTemplate>
-		<DataTemplate x:Key="ItemTemplate2">
+		<DataTemplate x:Key="NewsTemplate">
 			<StackPanel Margin="0,0,0,5" Width="459">
-				<TextBlock x:Name="title" Text="{Binding title}" TextWrapping="Wrap" FontSize="26.667" FontFamily="Segoe WP" FontWeight="Bold" HorizontalAlignment="Left"/>
+				<TextBlock x:Name="title" Text="{Binding title}" TextWrapping="Wrap" FontSize="26.667" FontFamily="Segoe WP" FontWeight="Bold" HorizontalAlignment="Left" MouseLeftButtonDown="title_MouseLeftButtonDown"/>
 				<TextBlock x:Name="url" Text="{Binding url}" FontSize="16" HorizontalAlignment="Left"/>
 				<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
 					<TextBlock x:Name="points" Text="{Binding points}" FontSize="16" Margin="0"/>
@@ -38,6 +30,7 @@
 	<phone:PhoneApplicationPage.FontFamily>
 		<StaticResource ResourceKey="PhoneFontFamilyNormal"/>
 	</phone:PhoneApplicationPage.FontFamily>
+<!-- hi -->
 	<phone:PhoneApplicationPage.FontSize>
 		<StaticResource ResourceKey="PhoneFontSizeNormal"/>
 	</phone:PhoneApplicationPage.FontSize>
@@ -45,30 +38,38 @@
 		<StaticResource ResourceKey="PhoneForegroundBrush"/>
 	</phone:PhoneApplicationPage.Foreground>
 
-    <!-- hi -->
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent" >
     	<Canvas HorizontalAlignment="Left" Height="30" Margin="0" VerticalAlignment="Top" Width="480" Background="#FFFF6600"/>
-    	<controls:Pivot x:Name="Hacker_News" Margin="8,-20,8,8" Title="Hacker News" FontWeight="Bold" BorderThickness="0">
+    	<controls:Pivot x:Name="hn_pivot" Margin="8,-20,8,8" Title="Hacker News" FontWeight="Bold" BorderThickness="0">
     		<controls:PivotItem x:Name="news" Header="news" d:DataContext="{d:DesignData /SampleData/NewsSampleData.xaml}">
-    			<Grid Margin="0,0,-24,-28">
-                    <ListBox ItemTemplate="{StaticResource ItemTemplate}" ItemsSource="{Binding items}"/>
+    			<Grid Margin="0,0,-11,-28">
+                    <ListBox ItemTemplate="{StaticResource NewsTemplate}" ItemsSource="{Binding items}"/>
     			</Grid>
     		</controls:PivotItem>
-    		<controls:PivotItem x:Name="newest" Header="new" Margin="0" FontWeight="Normal" d:DataContext="{d:DesignData /SampleData/NewsSampleData.xaml}">
-    			<Grid>
-                    <ListBox ItemTemplate="{StaticResource ItemTemplate2}" ItemsSource="{Binding items}"/>
-    			</Grid>
-    		</controls:PivotItem>
-    		<controls:PivotItem x:Name="comments" Header="comments">
-    			<Grid/>
-    		</controls:PivotItem>
-    		<controls:PivotItem x:Name="ask" Header="ask">
-    			<Grid/>
-    		</controls:PivotItem>
+    		<controls:PivotItem x:Name="newest" Header="new" Margin="0" FontWeight="Normal">
+                <Grid Margin="0,0,-24,-28">
+                    <ListBox ItemTemplate="{StaticResource NewsTemplate}" ItemsSource="{Binding items}"/>
+                </Grid>
+            </controls:PivotItem>
+<!--
     		<controls:PivotItem x:Name="jobs" Header="jobs">
-    			<Grid/>
-    		</controls:PivotItem>
+    			<Grid Margin="0,0,-24,-28">
+                    <ListBox ItemTemplate="{StaticResource NewsTemplate}" ItemsSource="{Binding items}"/>
+    			</Grid>
+            </controls:PivotItem>
+            --><!--
+    		<controls:PivotItem x:Name="comments" Header="comments">
+                <Grid Margin="0,0,-24,-28">
+                    <ListBox ItemTemplate="{StaticResource NewsTemplate}" ItemsSource="{Binding items}"/>
+                </Grid>
+            </controls:PivotItem>
+            -->
+    		<controls:PivotItem x:Name="ask" Header="ask">
+                <Grid Margin="0,0,-24,-28">
+                    <ListBox ItemTemplate="{StaticResource NewsTemplate}" ItemsSource="{Binding items}"/>
+                </Grid>
+            </controls:PivotItem>
     	</controls:Pivot>
     </Grid>
 </phone:PhoneApplicationPage>
