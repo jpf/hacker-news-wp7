@@ -16,6 +16,7 @@ using System.IO;
 using System.Text;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using Microsoft.Phone.Tasks;
 
 namespace Hacker_News
 {
@@ -46,6 +47,7 @@ namespace Hacker_News
     public partial class MainPage : PhoneApplicationPage
     {
         // public News news_data;
+        // public WebBrowserTask webBrowserTask = new WebBrowserTask();
 
         void processJsonString(StreamReader sr, PivotItem page)
         {
@@ -115,8 +117,12 @@ namespace Hacker_News
         private void title_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var selected_url = ((Hacker_News.Article)(((System.Windows.FrameworkElement)(sender)).DataContext)).url;
+            // WebBrowserTask webBrowserTask = new WebBrowserTask();
+            // webBrowserTask.URL = selected_url;
+            // webBrowserTask.Show();
             Browser.url = selected_url;
             NavigationService.Navigate(new Uri("/Browser.xaml", UriKind.Relative));
+
         }
     }
 }
