@@ -16,14 +16,16 @@
 		<DataTemplate x:Key="NewsTemplate">
 			<StackPanel Margin="0,0,0,5" Width="459">
 				<TextBlock x:Name="title" Text="{Binding title}" TextWrapping="Wrap" FontSize="26.667" FontFamily="Segoe WP" FontWeight="Bold" HorizontalAlignment="Left" MouseLeftButtonDown="title_MouseLeftButtonDown"/>
-				<TextBlock x:Name="url" Text="{Binding url}" FontSize="16" Margin="68,0,190,0"/>
-				<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="68,0,0,0" Width="383" >
+				<TextBlock x:Name="url" Text="{Binding url}" FontSize="16" Margin="0,0,190,0"/>
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="451" >
 					<TextBlock x:Name="points" Text="{Binding points}" FontSize="16" Margin="0"/>
 					<TextBlock x:Name="points_by" TextWrapping="Wrap" Text="points by" FontSize="16" Margin="5,0,0,0"/>
 					<TextBlock x:Name="author" Text="{Binding postedBy}" FontSize="16" Margin="5,0,0,0"/>
 					<TextBlock x:Name="time" Text="{Binding postedAgo}" Margin="5,0,0,0" FontSize="16"/>
+					<TextBlock x:Name="separator" TextWrapping="Wrap"><Run FontSize="16" Text=" | "/></TextBlock>
+					<TextBlock x:Name="comments" TextWrapping="Wrap" Text="{Binding commentCount}" FontSize="16"/>
+					<TextBlock x:Name="commentss" TextWrapping="Wrap" Text=" comments" FontSize="16"/>
 				</StackPanel>
-				<Button x:Name="comments" Content="{Binding commentCount}" FontSize="10.667" RenderTransformOrigin="5.515,-0.49" HorizontalAlignment="Left" Width="96"/>
 			</StackPanel>
 		</DataTemplate>
 	</phone:PhoneApplicationPage.Resources>

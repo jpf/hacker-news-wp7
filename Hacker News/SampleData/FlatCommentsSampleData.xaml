@@ -1,0 +1,14 @@
+<Hacker_News:FlatComments xmlns:Hacker_News="clr-namespace:Hacker_News">
+	<Hacker_News:FlatComments.comments>
+		<Hacker_News:FlatComment comment="Vestibulum maecenas class aenean" depth="68" id="63" points="55" postedAgo="Adipiscing nam parturient curae" postedBy="Donec cras duis etiam aliquam" postId="90" parentId="96"/>
+		<Hacker_News:FlatComment comment="Praesent accumsan mauris sed" depth="43" id="30" points="29" postedAgo="Dis vestibulum vestibulum bibendum curabitur" postedBy="Phasellus nullam aptent" postId="13" parentId="20"/>
+		<Hacker_News:FlatComment comment="Consequat auctor" depth="55" id="27" points="57" postedAgo="Nunc est" postedBy="Dictumst congue" postId="61" parentId="31"/>
+		<Hacker_News:FlatComment comment="Convallis adipiscing" depth="63" id="24" points="50" postedAgo="Hac leo dignissim parturient" postedBy="Amet cursus" postId="47" parentId="77"/>
+		<Hacker_News:FlatComment comment="Integer vestibulum" depth="72" id="54" points="16" postedAgo="Quisque mus dictum vestibulum" postedBy="Eleifend facilisi faucibus adipiscing" postId="73" parentId="33"/>
+		<Hacker_News:FlatComment comment="Parturient vestibulum vestibulum lectus" depth="56" id="20" points="53" postedAgo="Vivamus aliquam" postedBy="Ante elementum adipiscing parturient nec" postId="65" parentId="36"/>
+		<Hacker_News:FlatComment comment="Aliquet facilisis arcu" depth="20" id="36" points="96" postedAgo="Blandit habitant libero" postedBy="Ligula commodo inceptos fermentum" postId="65" parentId="40"/>
+		<Hacker_News:FlatComment comment="Conubia vestibulum interdum" depth="11" id="74" points="55" postedAgo="Litora vestibulum diam" postedBy="Fringilla luctus" postId="94" parentId="65"/>
+		<Hacker_News:FlatComment comment="Magnis lobortis non habitasse" depth="14" id="36" points="38" postedAgo="Fusce per hendrerit cubilia" postedBy="Mattis lorem" postId="77" parentId="85"/>
+		<Hacker_News:FlatComment comment="Dapibus adipiscing parturient" depth="36" id="77" points="12" postedAgo="Sed eget morbi" postedBy="Sem elit nulla mauris" postId="84" parentId="72"/>
+	</Hacker_News:FlatComments.comments>
+</Hacker_News:FlatComments>

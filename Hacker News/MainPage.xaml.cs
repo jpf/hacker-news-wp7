@@ -106,6 +106,7 @@ namespace Hacker_News
         {
             InitializeComponent();
             // news.DataContext = news_data;
+            // fetchComments("http://api.ihackernews.com/post/1936607");
 
             populatePageWithUrl(news, "http://api.ihackernews.com/page");
             populatePageWithUrl(newest, "http://api.ihackernews.com/new");
@@ -117,6 +118,10 @@ namespace Hacker_News
         private void title_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var selected_url = ((Hacker_News.Article)(((System.Windows.FrameworkElement)(sender)).DataContext)).url;
+            var postId = ((Hacker_News.Article)(((System.Windows.FrameworkElement)(sender)).DataContext)).id;
+            Post.id = postId;
+            NavigationService.Navigate(new Uri("/Post.xaml", UriKind.Relative));
+
             // WebBrowserTask webBrowserTask = new WebBrowserTask();
             // webBrowserTask.URL = selected_url;
             // webBrowserTask.Show();

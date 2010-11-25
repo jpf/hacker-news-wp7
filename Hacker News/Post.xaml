@@ -1,0 +1,86 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Hacker_News.Post"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True" Background="#FF508944">
+	<phone:PhoneApplicationPage.Resources>
+		<DataTemplate x:Key="FlatCommentTemplate">
+			<StackPanel>
+				<Grid Width="479">
+					<TextBlock x:Name="depth" Text="{Binding depth}" HorizontalAlignment="Left" Width="26" Foreground="#FF683636"/>
+					<StackPanel Margin="30,0,0,0">
+						<StackPanel Height="40" Orientation="Horizontal">
+							<TextBlock x:Name="points" Text="{Binding points}" HorizontalAlignment="Left" Width="25"/>
+							<TextBlock x:Name="postedBy" Text="{Binding postedBy}" Margin="0,0,-31,0" Width="181"/>
+							<TextBlock x:Name="postedAgo" Text="{Binding postedAgo}" Width="117"/>
+						</StackPanel>
+						<TextBlock x:Name="comment" Text="{Binding comment}" TextWrapping="Wrap" Width="430"/>
+					</StackPanel>
+				</Grid>
+			</StackPanel>
+		</DataTemplate>
+		<DataTemplate x:Key="FlatCommentTemplate1">
+			<StackPanel>
+				<TextBlock Text="{Binding comment}"/>
+				<TextBlock Text="{Binding depth}"/>
+				<TextBlock Text="{Binding id}"/>
+				<TextBlock Text="{Binding parentId}"/>
+				<TextBlock Text="{Binding points}"/>
+				<TextBlock Text="{Binding postedAgo}"/>
+				<TextBlock Text="{Binding postedBy}"/>
+				<TextBlock Text="{Binding postId}"/>
+			</StackPanel>
+		</DataTemplate>
+		<DataTemplate x:Key="FlatCommentTemplate2">
+			<StackPanel>
+				<StackPanel Width="480" Orientation="Horizontal">
+					<TextBlock x:Name="depth" Text="{Binding depth}" RenderTransformOrigin="0.5,0.5" Width="35" Margin="0,0,0,1"/>
+					<StackPanel Width="444">
+						<StackPanel Orientation="Horizontal" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="444">
+							<TextBlock x:Name="points" Text="{Binding points}" VerticalAlignment="Top" Margin="0,0,5,0"/>
+							<TextBlock TextWrapping="Wrap" Text=" points by "/>
+							<TextBlock x:Name="postedBy" Text="{Binding postedBy}" VerticalAlignment="Top" Margin="0,0,5,0"/>
+							<TextBlock x:Name="postedAgo" Text="{Binding postedAgo}" VerticalAlignment="Top"/>
+						</StackPanel>
+						<TextBlock x:Name="comment" Text="{Binding comment}" TextWrapping="Wrap" Foreground="#FF6EBCE5" HorizontalAlignment="Left"/>
+					</StackPanel>
+				</StackPanel>
+			</StackPanel>
+		</DataTemplate>
+	</phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" d:DataContext="{d:DesignData /SampleData/FlatCommentsSampleData.xaml}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+    	<ListBox x:Name="commentsList" ItemTemplate="{StaticResource FlatCommentTemplate2}" ItemsSource="{Binding comments}" Grid.Row="1"/>
+
+        <!--TitlePanel contains the name of the application and page title-->
+
+        <!--ContentPanel - place additional content here-->
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>

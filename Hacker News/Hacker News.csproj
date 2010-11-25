@@ -74,10 +74,10 @@
     <Compile Include="Browser.xaml.cs">
       <DependentUpon>Browser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SampleData\Article\Article.xaml.cs">
-      <DependentUpon>Article.xaml</DependentUpon>
+    <Compile Include="Post.xaml.cs">
+      <DependentUpon>Post.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -92,15 +92,14 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SampleData\Article\Article.xaml">
-      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    <Page Include="Post.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
-    <DesignTimeOnly Include="SampleData\Article\Article.xsd" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApplicationIcon.png">
@@ -112,6 +111,9 @@
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <DesignData Include="SampleData\FlatCommentsSampleData.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </DesignData>
     <DesignData Include="SampleData\NewsSampleData.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </DesignData>
