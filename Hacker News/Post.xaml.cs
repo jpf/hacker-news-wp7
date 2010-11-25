@@ -62,6 +62,7 @@ namespace Hacker_News
     public partial class Post : PhoneApplicationPage
     {
         public static int id = 0;
+        int depthIncrement = 20;
 
         // start
         FlatComment flattenComment(Comment input, int depth)
@@ -90,7 +91,7 @@ namespace Hacker_News
             output.Add(flattenComment(car, currentDepth));
             if (car.children.Count > 0)
             {
-                output.AddRange(flattenComments(car.children, currentDepth + 1));
+                output.AddRange(flattenComments(car.children, currentDepth + depthIncrement));
             }
 
             if (queue.Count > 0)

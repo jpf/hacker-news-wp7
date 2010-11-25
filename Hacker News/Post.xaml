@@ -43,7 +43,7 @@
 		<DataTemplate x:Key="FlatCommentTemplate2">
 			<StackPanel>
 				<StackPanel Width="480" Orientation="Horizontal">
-					<TextBlock x:Name="depth" Text="{Binding depth}" RenderTransformOrigin="0.5,0.5" Width="35" Margin="0,0,0,1"/>
+					<TextBlock x:Name="depth" RenderTransformOrigin="0.5,0.5" Width="{Binding depth}" Margin="0,0,0,1"/>
 					<StackPanel Width="444">
 						<StackPanel Orientation="Horizontal" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="444">
 							<TextBlock x:Name="points" Text="{Binding points}" VerticalAlignment="Top" Margin="0,0,5,0"/>
