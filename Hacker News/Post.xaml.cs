@@ -14,6 +14,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using Newtonsoft.Json;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Hacker_News
 {
@@ -67,12 +68,14 @@ namespace Hacker_News
         // start
         FlatComment flattenComment(Comment input, int depth)
         {
+            Regex rgx = new Regex("<(.|\n)*?>");
+            string noHtml = rgx.Replace(input.comment, "");
             FlatComment output = new FlatComment();
             // there HAS to be a better way to do this :(
             output.depth = depth;
             output.postedBy = input.postedBy;
             output.postedAgo = input.postedAgo;
-            output.comment = input.comment;
+            output.comment = noHtml; // input.comment;
             output.id = input.id;
             output.points = input.points;
             output.parentId = input.parentId;

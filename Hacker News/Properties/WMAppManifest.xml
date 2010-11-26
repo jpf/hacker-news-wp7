@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.0">
-  <App xmlns="" ProductID="{49659fa8-1b2a-491d-b3b9-9992e082dea2}" Title="Hacker_News" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="Hacker_News author" Description="Sample description" Publisher="Hacker_News">
+  <App xmlns="" ProductID="{49659fa8-1b2a-491d-b3b9-9992e082dea2}" Title="Hacker News" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="Joel Franusic" Description="Hacker News Reader" Publisher="Hacker News">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_GAMERSERVICES"/>

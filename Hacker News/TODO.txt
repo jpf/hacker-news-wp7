@@ -1,0 +1,15 @@
+﻿Add hella error handling
+
+Add loading thinger for news page
+
+Click title goes to browser, click comments goes to comments.
+
+Make it so that clicks fire when finger is lifted, or something.
+
+Less code, I don't need all this shit?
+
+Icon
+
+Splash Screen
+
+Save JSON to isolated storage, reload when button is pressed, or after 1 minute.

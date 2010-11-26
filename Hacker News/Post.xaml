@@ -45,13 +45,29 @@
 				<StackPanel Width="480" Orientation="Horizontal">
 					<TextBlock x:Name="depth" RenderTransformOrigin="0.5,0.5" Width="{Binding depth}" Margin="0,0,0,1"/>
 					<StackPanel Width="444">
-						<StackPanel Orientation="Horizontal" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="444">
-							<TextBlock x:Name="points" Text="{Binding points}" VerticalAlignment="Top" Margin="0,0,5,0"/>
-							<TextBlock TextWrapping="Wrap" Text=" points by "/>
-							<TextBlock x:Name="postedBy" Text="{Binding postedBy}" VerticalAlignment="Top" Margin="0,0,5,0"/>
-							<TextBlock x:Name="postedAgo" Text="{Binding postedAgo}" VerticalAlignment="Top"/>
+						<StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Width="444">
+							<TextBlock x:Name="points" Text="{Binding points}" VerticalAlignment="Top" Margin="0" FontSize="16">
+								<TextBlock.Foreground>
+									<SolidColorBrush Color="#FFCCCCCC"/>
+								</TextBlock.Foreground>
+							</TextBlock>
+							<TextBlock TextWrapping="Wrap" Text=" points by " FontSize="16">
+								<TextBlock.Foreground>
+									<SolidColorBrush Color="#FFCCCCCC"/>
+								</TextBlock.Foreground>
+							</TextBlock>
+							<TextBlock x:Name="postedBy" Text="{Binding postedBy}" VerticalAlignment="Top" Margin="0,0,5,0" FontSize="16">
+								<TextBlock.Foreground>
+									<SolidColorBrush Color="#FFCCCCCC"/>
+								</TextBlock.Foreground>
+							</TextBlock>
+							<TextBlock x:Name="postedAgo" Text="{Binding postedAgo}" VerticalAlignment="Top" FontSize="16">
+								<TextBlock.Foreground>
+									<SolidColorBrush Color="#FFCCCCCC"/>
+								</TextBlock.Foreground>
+							</TextBlock>
 						</StackPanel>
-						<TextBlock x:Name="comment" Text="{Binding comment}" TextWrapping="Wrap" Foreground="#FF6EBCE5" HorizontalAlignment="Left"/>
+						<TextBlock x:Name="comment" Text="{Binding comment}" TextWrapping="Wrap" HorizontalAlignment="Left"/>
 					</StackPanel>
 				</StackPanel>
 			</StackPanel>

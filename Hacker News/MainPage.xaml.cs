@@ -81,6 +81,7 @@ namespace Hacker_News
             var state = result.AsyncState as AsyncState;
             var request = state.request as HttpWebRequest;
             var page = state.page as PivotItem;
+            // FIXME: Add error handling here ...
             var response = request.EndGetResponse(result);
             if (response != null)
             {
@@ -109,9 +110,9 @@ namespace Hacker_News
             // fetchComments("http://api.ihackernews.com/post/1936607");
 
             populatePageWithUrl(news, "http://api.ihackernews.com/page");
-            populatePageWithUrl(newest, "http://api.ihackernews.com/new");
+            // populatePageWithUrl(newest, "http://api.ihackernews.com/new");
             // populatePageWithUrl(comments, "http://api.ihackernews.com/newcomments");
-            populatePageWithUrl(ask, "http://api.ihackernews.com/ask");
+            // populatePageWithUrl(ask, "http://api.ihackernews.com/ask");
 
         }
 
