@@ -125,15 +125,6 @@ namespace Hacker_News
             FlatComments flatComments = new FlatComments();
             flatComments.comments = flattenComments(comments.comments);
 
-            //dp.list = new ObservableCollection<FlatComment>();
-            //foreach (FlatComment c in flattenedComments)
-            //{
-            //    dp.list.Add(c);
-            //}
-
-            var monkey = "oo oo";
-            monkey = "ook ook";
-
             // I've got to do it to avoid thread locking issues ...
             // TODO: Remove this by making the News class an INotifyPropertyChanged type?
             this.Dispatcher.BeginInvoke(

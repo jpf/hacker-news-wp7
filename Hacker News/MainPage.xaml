@@ -16,7 +16,7 @@
 		<DataTemplate x:Key="NewsTemplate">
 			<StackPanel Margin="0,0,0,5" Width="459">
 				<TextBlock x:Name="title" Text="{Binding title}" TextWrapping="Wrap" FontSize="26.667" FontFamily="Segoe WP" FontWeight="Bold" HorizontalAlignment="Left" MouseLeftButtonDown="title_MouseLeftButtonDown"/>
-				<TextBlock x:Name="url" Text="{Binding url}" FontSize="16" Margin="0,0,190,0"/>
+				<TextBlock x:Name="url" Text="{Binding urlDomainOnly}" FontSize="16" VerticalAlignment="Bottom" Margin="6,0,0,0" HorizontalAlignment="Left" d:LayoutOverrides="HorizontalMargin"/>
 				<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="451" >
 					<TextBlock x:Name="points" Text="{Binding points}" FontSize="16" Margin="0"/>
 					<TextBlock x:Name="points_by" TextWrapping="Wrap" Text="points by" FontSize="16" Margin="5,0,0,0"/>
@@ -48,6 +48,7 @@
     		<controls:PivotItem x:Name="news" Header="news" d:DataContext="{d:DesignData /SampleData/NewsSampleData.xaml}" Margin="8,28,8,0">
     			<Grid Margin="0,0,-11,-28">
                     <ListBox ItemTemplate="{StaticResource NewsTemplate}" ItemsSource="{Binding items}"/>
+                    <TextBlock x:Name="testing" Margin="0,-31,0,0" TextWrapping="Wrap" Text="{Binding nextId}" VerticalAlignment="Top" d:DataContext="{d:DesignData /SampleData/NewsSampleData.xaml}" Foreground="White" HorizontalAlignment="Left" Width="214"/>
     			</Grid>
     		</controls:PivotItem>
     		<controls:PivotItem x:Name="newest" Header="new" Margin="0" FontWeight="Normal">

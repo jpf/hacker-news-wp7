@@ -8,8 +8,10 @@ Make it so that clicks fire when finger is lifted, or something.
 
 Less code, I don't need all this shit?
 
-Icon
+Icon - '(hacker news) ?
 
 Splash Screen
 
 Save JSON to isolated storage, reload when button is pressed, or after 1 minute.
+
+Only show sld.tld on the Main Page (maybe I should rename it "News" ?)
