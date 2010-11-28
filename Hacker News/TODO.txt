@@ -1,9 +1,10 @@
-﻿Click title goes to browser, click comments goes to comments.
-	Make it so that clicks fire when finger is lifted, or something.
+﻿Fix indenting on comments - subtract the depth from the width :(
 
-Fix indenting on comments - subtract the depth from the width :(
+Disable highlighting on the main view?
 
-Splash Screen
+Make a better Splash Screen, or disable it entirely.
+
+Fix the browser window to not look terrible.
 
 Add hella error handling
 

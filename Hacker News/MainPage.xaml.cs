@@ -75,7 +75,11 @@ namespace Hacker_News
                 }
             }
         }
-        public string url { get; set; }
+        public string url 
+        {
+            get { return this.urlValue.ToString(); }
+            set { this.urlValue = new Uri(value); }
+        }
         public int id { get; set; }
         public int commentCount { get; set; }
         public int points { get; set; }
@@ -128,22 +132,30 @@ namespace Hacker_News
         {
             InitializeComponent();
             setProgressBar(true);
-
             news.DataContext = news_data;
 
             populateBinding(news_data, "http://api.ihackernews.com/page");
             // populatePageWithUrl(newest, "http://api.ihackernews.com/new");
             // populatePageWithUrl(comments, "http://api.ihackernews.com/newcomments");
             // populatePageWithUrl(ask, "http://api.ihackernews.com/ask");
-
         }
 
-        private void title_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+
+        private Article whatSelected(object sender)
         {
-            var selected = ((Hacker_News.Article)(((System.Windows.FrameworkElement)(sender)).DataContext));
+            return ((Hacker_News.Article)(((System.Windows.FrameworkElement)(sender)).DataContext));
+        }
+
+        private void commentsClicked(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var selected = whatSelected(sender);
             Post.id = selected.id;
             NavigationService.Navigate(new Uri("/Post.xaml", UriKind.Relative));
+        }
 
+        private void titleClicked(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var selected = whatSelected(sender);
             // WebBrowserTask webBrowserTask = new WebBrowserTask();
             // webBrowserTask.URL = selected_url;
             // webBrowserTask.Show();

@@ -15,9 +15,13 @@
 		</DataTemplate>
 		<DataTemplate x:Key="NewsTemplate">
 			<StackPanel Margin="0,0,0,5" Width="459">
-				<TextBlock x:Name="title" Text="{Binding title}" TextWrapping="Wrap" FontSize="26.667" FontFamily="Segoe WP" FontWeight="Bold" HorizontalAlignment="Left" MouseLeftButtonDown="title_MouseLeftButtonDown"/>
-				<TextBlock x:Name="url" Text="{Binding urlDomainOnly}" FontSize="16" VerticalAlignment="Bottom" Margin="6,0,0,0" HorizontalAlignment="Left" d:LayoutOverrides="HorizontalMargin"/>
-				<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="451" >
+				<TextBlock x:Name="title" Text="{Binding title}" TextWrapping="Wrap" FontSize="26.667" FontFamily="Segoe WP" FontWeight="Bold" HorizontalAlignment="Left" MouseLeftButtonUp="titleClicked"/>
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+					<TextBlock TextWrapping="Wrap" Text="(" FontSize="13.333"/>
+					<TextBlock x:Name="url" Text="{Binding urlDomainOnly}" FontSize="13.333" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+					<TextBlock TextWrapping="Wrap" Text=")" FontSize="13.333"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="451" MouseLeftButtonUp="commentsClicked" >
 					<TextBlock x:Name="points" Text="{Binding points}" FontSize="16" Margin="0"/>
 					<TextBlock x:Name="points_by" TextWrapping="Wrap" Text="points by" FontSize="16" Margin="5,0,0,0"/>
 					<TextBlock x:Name="author" Text="{Binding postedBy}" FontSize="16" Margin="5,0,0,0"/>
