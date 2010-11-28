@@ -89,7 +89,9 @@ namespace Hacker_News
 
     public partial class MainPage : PhoneApplicationPage
     {
-        public News news_data = new News();
+        private News news_page_data = new News();
+        private News ask_page_data = new News();
+        private News new_page_data = new News();
 
         public void setProgressBar(Boolean state)
         {
@@ -131,13 +133,9 @@ namespace Hacker_News
         public MainPage()
         {
             InitializeComponent();
-            setProgressBar(true);
-            news.DataContext = news_data;
-
-            populateBinding(news_data, "http://api.ihackernews.com/page");
-            // populatePageWithUrl(newest, "http://api.ihackernews.com/new");
-            // populatePageWithUrl(comments, "http://api.ihackernews.com/newcomments");
-            // populatePageWithUrl(ask, "http://api.ihackernews.com/ask");
+            news.DataContext = news_page_data;
+            ask.DataContext = ask_page_data;
+            newest.DataContext = new_page_data;
         }
 
 
@@ -156,12 +154,33 @@ namespace Hacker_News
         private void titleClicked(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var selected = whatSelected(sender);
+            #region If launching the WebBrowser actually worked, this is how we'd do it.
             // WebBrowserTask webBrowserTask = new WebBrowserTask();
             // webBrowserTask.URL = selected_url;
             // webBrowserTask.Show();
+            #endregion
             Browser.url = selected.url;
             NavigationService.Navigate(new Uri("/Browser.xaml", UriKind.Relative));
 
+        }
+        private void PivotSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            setProgressBar(true);
+            var selected = ((Microsoft.Phone.Controls.PivotItem)(((Microsoft.Phone.Controls.Pivot)(sender)).SelectedItem)).Header as string;
+            switch (selected)
+            {
+                case "news":
+                    populateBinding(news_page_data, "http://api.ihackernews.com/page");
+                    break;
+                case "new":
+                    populateBinding(new_page_data, "http://api.ihackernews.com/new");
+                    break;
+                case "ask":
+                    populateBinding(ask_page_data, "http://api.ihackernews.com/ask");
+                    break;
+                //case "comments":
+                //    populateBinding(comments, "http://api.ihackernews.com/newcomments");
+            }
         }
     }
 }

@@ -40,7 +40,7 @@
     <Grid x:Name="LayoutRoot" Background="Transparent" >
     	<Canvas HorizontalAlignment="Left" Height="24" Margin="0" VerticalAlignment="Top" Width="480" Background="{StaticResource DefaultTopcolor}"/>
     	<ProgressBar x:Name="progressBar" Height="10" Margin="0,24,0,0" VerticalAlignment="Top" Background="{StaticResource DefaultTopcolor}" Foreground="{StaticResource DefaultTopcolor}"/>
-    	<controls:Pivot x:Name="hn_pivot" Margin="0,-20,0,0" Title="Hacker News" FontWeight="Bold" BorderThickness="0">
+    	<controls:Pivot x:Name="hn_pivot" Margin="0,-20,0,0" Title="Hacker News" FontWeight="Bold" BorderThickness="0" SelectionChanged="PivotSelectionChanged">
     		<controls:PivotItem x:Name="news" Header="news" d:DataContext="{d:DesignData /SampleData/NewsSampleData.xaml}" Margin="8,28,8,0">
     			<Grid Margin="0,0,-11,-28">
                     <ListBox ItemTemplate="{StaticResource NewsTemplate}" ItemsSource="{Binding items}"/>
