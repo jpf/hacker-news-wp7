@@ -3,8 +3,6 @@
 
 Fix indenting on comments - subtract the depth from the width :(
 
-Icon: '(hacker news)
-
 Splash Screen
 
 Add hella error handling
