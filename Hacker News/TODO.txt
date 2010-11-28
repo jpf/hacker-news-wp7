@@ -1,13 +1,12 @@
-﻿Add hella error handling
+﻿Click title goes to browser, click comments goes to comments.
+	Make it so that clicks fire when finger is lifted, or something.
 
-Click title goes to browser, click comments goes to comments.
+Fix indenting on comments - subtract the depth from the width :(
 
-Make it so that clicks fire when finger is lifted, or something.
-
-Fix indenting on comments (set the width to auto...)
-
-Icon - '(hacker news) ?
+Icon: '(hacker news)
 
 Splash Screen
+
+Add hella error handling
 
 Save JSON to isolated storage, reload when button is pressed, or after 1 minute.
