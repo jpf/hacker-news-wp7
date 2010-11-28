@@ -26,8 +26,8 @@ namespace Hacker_News
         private string versionValue = String.Empty;
         private ObservableCollection<Article> itemsValue = new ObservableCollection<Article>();
 
+        #region I don't really understand what's going on here ...
         public event PropertyChangedEventHandler PropertyChanged;
-
         private void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)
@@ -35,6 +35,7 @@ namespace Hacker_News
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
+        #endregion
 
         public string nextId
         {
@@ -82,52 +83,23 @@ namespace Hacker_News
         public string postedBy { get; set; }
     }
 
-    public class AsyncState
-    {
-        public HttpWebRequest request { get; set; }
-        public News binding { get; set; }
-    }
-
     public partial class MainPage : PhoneApplicationPage
     {
         public News news_data = new News();
-        // public WebBrowserTask webBrowserTask = new WebBrowserTask();
 
-        News processJsonString(StreamReader sr)
+        public void setProgressBar(Boolean state)
         {
-            News rv = new News();
-            Newtonsoft.Json.JsonSerializer json = new Newtonsoft.Json.JsonSerializer();
-            // do i even need these?
-            json.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
-            json.ObjectCreationHandling = Newtonsoft.Json.ObjectCreationHandling.Replace;
-            json.MissingMemberHandling = Newtonsoft.Json.MissingMemberHandling.Ignore;
-            json.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-
-            Newtonsoft.Json.JsonTextReader reader = new JsonTextReader(sr);
-
-            rv = json.Deserialize<News>(reader);
-            sr.Close();
-            reader.Close();
-
-            return rv;
+            progressBar.IsIndeterminate = state;
+            progressBar.Visibility = (state == true) ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        private void RequestCallback(IAsyncResult result)
+        private void HandleNewsResult(IAsyncResult result)
         {
-            var state = result.AsyncState as AsyncState;
-            var request = state.request as HttpWebRequest;
-            var binding = state.binding as News;
-            // FIXME: Add error handling here ...
-            var response = request.EndGetResponse(result);
-            if (response == null)
-            {
-                return;
-            }
+            Common common = new Common();
+            var binding = (result.AsyncState as AsyncState).binding as News;
+            StreamReader txt = common.makeStreamReaderFromResult(result);
 
-            Stream stream = response.GetResponseStream();
-            UTF8Encoding encoding = new UTF8Encoding();
-            StreamReader txt = new StreamReader(stream, encoding);
-            News rv = processJsonString(txt);
+            News rv = common.deserializeStreamReader<News>(txt);
             this.Dispatcher.BeginInvoke(
             () =>
             {
@@ -136,8 +108,9 @@ namespace Hacker_News
                 binding.items = rv.items;
                 // FIXME: Shouldn't I be able to do this instead?
                 //binding = processJsonString(txt);
+                setProgressBar(false);
             }
-        );
+            );
         }
 
         public void populateBinding(News binding, string Url)
@@ -147,13 +120,14 @@ namespace Hacker_News
             request.Accept = "application/json"; //atom+xml";
             state.request = request;
             state.binding = binding;
-            request.BeginGetResponse(RequestCallback, state);
+            request.BeginGetResponse(HandleNewsResult, state);
         }
 
         // Constructor
         public MainPage()
         {
             InitializeComponent();
+            setProgressBar(true);
 
             news.DataContext = news_data;
 
@@ -166,15 +140,14 @@ namespace Hacker_News
 
         private void title_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            var selected_url = ((Hacker_News.Article)(((System.Windows.FrameworkElement)(sender)).DataContext)).url;
-            var postId = ((Hacker_News.Article)(((System.Windows.FrameworkElement)(sender)).DataContext)).id;
-            Post.id = postId;
+            var selected = ((Hacker_News.Article)(((System.Windows.FrameworkElement)(sender)).DataContext));
+            Post.id = selected.id;
             NavigationService.Navigate(new Uri("/Post.xaml", UriKind.Relative));
 
             // WebBrowserTask webBrowserTask = new WebBrowserTask();
             // webBrowserTask.URL = selected_url;
             // webBrowserTask.Show();
-            Browser.url = selected_url;
+            Browser.url = selected.url;
             NavigationService.Navigate(new Uri("/Browser.xaml", UriKind.Relative));
 
         }

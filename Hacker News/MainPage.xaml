@@ -43,12 +43,12 @@
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent" >
-    	<Canvas HorizontalAlignment="Left" Height="30" Margin="0" VerticalAlignment="Top" Width="480" Background="#FFFF6600"/>
+    	<Canvas HorizontalAlignment="Left" Height="24" Margin="0" VerticalAlignment="Top" Width="480" Background="{StaticResource DefaultTopcolor}"/>
+    	<ProgressBar x:Name="progressBar" Height="10" Margin="0,24,0,0" VerticalAlignment="Top" Background="{StaticResource DefaultTopcolor}" Foreground="{StaticResource DefaultTopcolor}"/>
     	<controls:Pivot x:Name="hn_pivot" Margin="0,-20,0,0" Title="Hacker News" FontWeight="Bold" BorderThickness="0">
     		<controls:PivotItem x:Name="news" Header="news" d:DataContext="{d:DesignData /SampleData/NewsSampleData.xaml}" Margin="8,28,8,0">
     			<Grid Margin="0,0,-11,-28">
                     <ListBox ItemTemplate="{StaticResource NewsTemplate}" ItemsSource="{Binding items}"/>
-                    <TextBlock x:Name="testing" Margin="0,-31,0,0" TextWrapping="Wrap" Text="{Binding nextId}" VerticalAlignment="Top" d:DataContext="{d:DesignData /SampleData/NewsSampleData.xaml}" Foreground="White" HorizontalAlignment="Left" Width="214"/>
     			</Grid>
     		</controls:PivotItem>
     		<controls:PivotItem x:Name="newest" Header="new" Margin="0" FontWeight="Normal">

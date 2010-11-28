@@ -15,6 +15,7 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.ComponentModel;
 
 namespace Hacker_News
 {
@@ -30,7 +31,6 @@ namespace Hacker_News
         public string postedBy { get; set; }
         public List<Comment> comments { get; set; }
     }
-
     public class Comment
     {
         public string postedBy { get; set; }
@@ -43,6 +43,27 @@ namespace Hacker_News
         public List<Comment> children { get; set; }
     }
 
+    public class FlatComments : INotifyPropertyChanged
+    {
+        private List<FlatComment> commentsValue = new List<FlatComment>();
+
+        #region I don't really understand what's going on here ...
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String info)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
+            }
+        }
+        #endregion
+
+        public List<FlatComment> comments
+        {
+            get { return this.commentsValue; }
+            set { this.commentsValue = value; NotifyPropertyChanged("comments"); }
+        }
+    }
     public class FlatComment
     {
         public string postedBy { get; set; }
@@ -55,31 +76,32 @@ namespace Hacker_News
         public int depth { get; set; }
     }
 
-    public class FlatComments
-    {
-        public List<FlatComment> comments { get; set; }
-    }
-
     public partial class Post : PhoneApplicationPage
     {
-        public static int id = 0;
+        public static int id;
         int depthIncrement = 20;
+        public FlatComments flatComments = new FlatComments();
 
-        // start
+        public void setProgressBar(Boolean state)
+        {
+            progressBar.IsIndeterminate = state;
+            progressBar.Visibility = (state == true) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
         FlatComment flattenComment(Comment input, int depth)
         {
-            Regex rgx = new Regex("<(.|\n)*?>");
-            string noHtml = rgx.Replace(input.comment, "");
             FlatComment output = new FlatComment();
-            // there HAS to be a better way to do this :(
+            Regex stripHtml = new Regex("<(.|\n)*?>");
+            #region there HAS to be a better way to do this
             output.depth = depth;
             output.postedBy = input.postedBy;
             output.postedAgo = input.postedAgo;
-            output.comment = noHtml; // input.comment;
+            output.comment = stripHtml.Replace(input.comment, "");
             output.id = input.id;
             output.points = input.points;
             output.parentId = input.parentId;
             output.postId = input.postId;
+            #endregion
             return output;
         }
 
@@ -87,9 +109,7 @@ namespace Hacker_News
         {
             List<FlatComment> output = new List<FlatComment>();
             Queue<Comment> queue = new Queue<Comment>(input);
-            Comment car = new Comment();
-
-            car = queue.Dequeue();
+            Comment car = queue.Dequeue();
 
             output.Add(flattenComment(car, currentDepth));
             if (car.children.Count > 0)
@@ -106,66 +126,39 @@ namespace Hacker_News
             return output;
         }
 
-        void processPostJsonString(StreamReader sr)
+        private void HandleCommentResult(IAsyncResult result)
         {
-            Comments comments = new Comments();
-            Newtonsoft.Json.JsonSerializer json = new Newtonsoft.Json.JsonSerializer();
-            // do i even need these?
-            json.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
-            json.ObjectCreationHandling = Newtonsoft.Json.ObjectCreationHandling.Replace;
-            json.MissingMemberHandling = Newtonsoft.Json.MissingMemberHandling.Ignore;
-            json.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            Common common = new Common();
+            var binding = (result.AsyncState as AsyncState).binding as FlatComments;
+            StreamReader txt = common.makeStreamReaderFromResult(result);
 
-            Newtonsoft.Json.JsonTextReader reader = new JsonTextReader(sr);
-
-            comments = json.Deserialize<Comments>(reader);
-            sr.Close();
-            reader.Close();
-
-            FlatComments flatComments = new FlatComments();
-            flatComments.comments = flattenComments(comments.comments);
-
-            // I've got to do it to avoid thread locking issues ...
-            // TODO: Remove this by making the News class an INotifyPropertyChanged type?
+            Comments comments = common.deserializeStreamReader<Comments>(txt);
             this.Dispatcher.BeginInvoke(
                 () =>
                 {
-                    commentsList.DataContext = flatComments;
+                    binding.comments = flattenComments(comments.comments);
+                    setProgressBar(false);
                 }
             );
         }
 
-        private void PostRequestCallback(IAsyncResult result)
-        {
-            var state = result.AsyncState as AsyncState;
-            var request = state.request as HttpWebRequest;
-            var response = request.EndGetResponse(result);
-            if (response != null)
-            {
-                Stream rv = response.GetResponseStream();
-                UTF8Encoding encoding = new UTF8Encoding();
-                StreamReader txt = new StreamReader(rv, encoding);
-                processPostJsonString(txt);
-            }
-        }
-
-        public void fetchComments(string Url)
+        public void populateCommentsBinding(FlatComments binding, string Url)
         {
             AsyncState state = new AsyncState();
             HttpWebRequest request = HttpWebRequest.Create(Url) as HttpWebRequest;
             request.Accept = "application/json"; //atom+xml";
             state.request = request;
-            request.BeginGetResponse(PostRequestCallback, state);
+            state.binding = binding;
+            request.BeginGetResponse(HandleCommentResult, state);
         }
-
-        // end
 
         public Post()
         {
             InitializeComponent();
-            // fetchComments("http://api.ihackernews.com/post/1936607");
+            setProgressBar(true);
+            commentsList.DataContext = flatComments;
             string url = "http://api.ihackernews.com/post/" + id.ToString();
-            fetchComments(url);
+            populateCommentsBinding(flatComments, url);
         }
     }
 }

@@ -44,8 +44,8 @@
 			<StackPanel>
 				<StackPanel Width="480" Orientation="Horizontal">
 					<TextBlock x:Name="depth" RenderTransformOrigin="0.5,0.5" Width="{Binding depth}" Margin="0,0,0,1"/>
-					<StackPanel Width="444">
-						<StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Width="444">
+					<StackPanel Width="480">
+						<StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
 							<TextBlock x:Name="points" Text="{Binding points}" VerticalAlignment="Top" Margin="0" FontSize="16">
 								<TextBlock.Foreground>
 									<SolidColorBrush Color="#FFCCCCCC"/>
@@ -67,7 +67,7 @@
 								</TextBlock.Foreground>
 							</TextBlock>
 						</StackPanel>
-						<TextBlock x:Name="comment" Text="{Binding comment}" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+						<TextBlock x:Name="comment" Text="{Binding comment}" TextWrapping="Wrap" HorizontalAlignment="Left" Width="480" Margin="0"/>
 					</StackPanel>
 				</StackPanel>
 			</StackPanel>
@@ -75,11 +75,13 @@
 	</phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" d:DataContext="{d:DesignData /SampleData/FlatCommentsSampleData.xaml}">
+    <Grid x:Name="LayoutRoot" d:DataContext="{d:DesignData /SampleData/FlatCommentsSampleData.xaml}" Height="768" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="480">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+    	<ProgressBar x:Name="progressBar" Height="10" Grid.Row="1" VerticalAlignment="Top" Background="{StaticResource DefaultTopcolor}" Foreground="{StaticResource DefaultTopcolor}" HorizontalAlignment="Right" Width="480"/>
+
     	<ListBox x:Name="commentsList" ItemTemplate="{StaticResource FlatCommentTemplate2}" ItemsSource="{Binding comments}" Grid.Row="1"/>
 
         <!--TitlePanel contains the name of the application and page title-->
