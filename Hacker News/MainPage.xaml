@@ -4,15 +4,6 @@
     d:DesignWidth="480" d:DesignHeight="768"
     shell:SystemTray.IsVisible="True" DataContext="{Binding}" mc:Ignorable="d">
 	<phone:PhoneApplicationPage.Resources>
-		<DataTemplate x:Key="ItemTemplate">
-			<Grid Height="89" Width="447">
-				<TextBlock x:Name="_points" Text="{Binding points}" Margin="160,59,0,0" HorizontalAlignment="Left" Width="28" Height="23" VerticalAlignment="Top"/>
-				<TextBlock Text="{Binding postedAgo}" Margin="0,63,20,0" HorizontalAlignment="Right" Width="168" VerticalAlignment="Top"/>
-				<TextBlock Text="{Binding postedBy}" Margin="0,59,0,0" HorizontalAlignment="Left" Width="133" VerticalAlignment="Top"/>
-				<TextBlock Text="{Binding title}" VerticalAlignment="Top" Height="32" FontSize="26.667"/>
-				<TextBlock Text="{Binding url}" VerticalAlignment="Top" d:LayoutOverrides="Width" Margin="0,32,0,0"/>
-			</Grid>
-		</DataTemplate>
 		<DataTemplate x:Key="NewsTemplate">
 			<StackPanel Margin="0,0,0,5" Width="459">
 				<TextBlock x:Name="title" Text="{Binding title}" TextWrapping="Wrap" FontSize="26.667" FontFamily="Segoe WP" FontWeight="Bold" HorizontalAlignment="Left" MouseLeftButtonUp="titleClicked"/>
