@@ -24,7 +24,7 @@
         <TemplateType5>
           <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
           <Count>0</Count>
-          <Title>Hacker_News</Title>
+          <Title>Hacker News</Title>
         </TemplateType5>
       </PrimaryToken>
     </Tokens>
