@@ -125,8 +125,8 @@ namespace Hacker_News
                 this.Dispatcher.BeginInvoke(
                     () =>
                     {
-                        errorLine.Text = e.Message;
-                        errorLine.Visibility = Visibility.Visible;
+                        //errorLine.Text = e.Message;
+                        //errorLine.Visibility = Visibility.Visible;
                         setProgressBar(false);
                     }
                 );
