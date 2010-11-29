@@ -173,9 +173,15 @@ namespace Hacker_News
             // webBrowserTask.URL = selected_url;
             // webBrowserTask.Show();
             #endregion
-            Browser.url = selected.url;
-            NavigationService.Navigate(new Uri("/Browser.xaml", UriKind.Relative));
-
+            if (selected.url.StartsWith("http://"))
+            {
+                Browser.url = selected.url;
+                NavigationService.Navigate(new Uri("/Browser.xaml", UriKind.Relative));
+            }
+            else // special case for "Ask HN" style links.
+            {
+                commentsClicked(sender, e);
+            }
         }
         private void PivotSelectionChanged(object sender, SelectionChangedEventArgs e)
         {

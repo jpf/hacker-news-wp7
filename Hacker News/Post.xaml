@@ -42,9 +42,9 @@
 		</DataTemplate>
 		<DataTemplate x:Key="FlatCommentTemplate2">
 			<StackPanel>
-				<StackPanel Width="480" Orientation="Horizontal">
+				<StackPanel Orientation="Horizontal" Margin="0" Width="470">
 					<TextBlock x:Name="depth" RenderTransformOrigin="0.5,0.5" Width="{Binding depth}" Margin="0,0,0,1"/>
-					<StackPanel Width="480">
+					<StackPanel>
 						<StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
 							<TextBlock x:Name="points" Text="{Binding points}" VerticalAlignment="Top" Margin="0" FontSize="16">
 								<TextBlock.Foreground>
@@ -67,7 +67,7 @@
 								</TextBlock.Foreground>
 							</TextBlock>
 						</StackPanel>
-						<TextBlock x:Name="comment" Text="{Binding comment}" TextWrapping="Wrap" HorizontalAlignment="Left" Width="480" Margin="0"/>
+						<TextBlock x:Name="comment" Text="{Binding comment}" TextWrapping="Wrap" HorizontalAlignment="Left" Width="{Binding width}" Margin="0,0,0,7"/>
 					</StackPanel>
 				</StackPanel>
 			</StackPanel>
@@ -81,8 +81,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
     	<ProgressBar x:Name="progressBar" Height="10" Grid.Row="1" VerticalAlignment="Top" Background="{StaticResource DefaultTopcolor}" Foreground="{StaticResource DefaultTopcolor}" HorizontalAlignment="Right" Width="480"/>
-
-    	<ListBox x:Name="commentsList" ItemTemplate="{StaticResource FlatCommentTemplate2}" ItemsSource="{Binding comments}" Grid.Row="1"/>
+    	<ScrollViewer DataContext="{Binding}" Grid.Row="1" >
+    		<StackPanel Margin="5,0">
+    			<TextBlock x:Name="textTextBlock" TextWrapping="Wrap" Text="{Binding text}" Width="460" Margin="5,0,5,10" FontWeight="Bold"/>
+    			<ListBox x:Name="commentsList" ItemTemplate="{StaticResource FlatCommentTemplate2}" ItemsSource="{Binding comments}" IsHitTestVisible="False"/>
+    		</StackPanel>
+    	</ScrollViewer>
 
         <!--TitlePanel contains the name of the application and page title-->
 

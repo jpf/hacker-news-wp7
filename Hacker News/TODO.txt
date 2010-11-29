@@ -1,8 +1,4 @@
-﻿Fix local links ("Ask HN", etc)
-
-Fix the browser window to not look terrible.
-
-Fix indenting on comments - subtract the depth from the width :(
+﻿Fix the browser window to not look terrible.
 
 Make a better Splash Screen, or disable it entirely.
 

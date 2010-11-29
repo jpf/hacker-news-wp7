@@ -45,6 +45,7 @@ namespace Hacker_News
 
     public class FlatComments : INotifyPropertyChanged
     {
+        private string textValue;
         private List<FlatComment> commentsValue = new List<FlatComment>();
 
         #region I don't really understand what's going on here ...
@@ -58,6 +59,12 @@ namespace Hacker_News
         }
         #endregion
 
+        public string text
+        {
+            get { return this.textValue; }
+            set { this.textValue = value; NotifyPropertyChanged("text"); }
+        }
+
         public List<FlatComment> comments
         {
             get { return this.commentsValue; }
@@ -66,6 +73,8 @@ namespace Hacker_News
     }
     public class FlatComment
     {
+        private int widthValue = 470;
+        private int depthValue = 0;
         public string postedBy { get; set; }
         public string postedAgo { get; set; }
         public string comment { get; set; }
@@ -73,7 +82,19 @@ namespace Hacker_News
         public int points { get; set; }
         public int parentId { get; set; }
         public int postId { get; set; }
-        public int depth { get; set; }
+        public int depth
+        {
+            get { return this.depthValue; }
+            set
+            {
+                this.depthValue = value;
+                this.widthValue = this.widthValue - value;
+            }
+        }
+        public int width
+        {
+            get { return (this.widthValue); }
+        }
     }
 
     public partial class Post : PhoneApplicationPage
@@ -81,6 +102,12 @@ namespace Hacker_News
         public static int id;
         int depthIncrement = 20;
         public FlatComments flatComments = new FlatComments();
+
+        private string stripHtml(string input)
+        {
+            Regex removeHtmlTags = new Regex("<(.|\n)*?>");
+            return removeHtmlTags.Replace(input, " ").Trim();
+        }
 
         public void setProgressBar(Boolean state)
         {
@@ -91,12 +118,11 @@ namespace Hacker_News
         FlatComment flattenComment(Comment input, int depth)
         {
             FlatComment output = new FlatComment();
-            Regex stripHtml = new Regex("<(.|\n)*?>");
             #region there HAS to be a better way to do this
             output.depth = depth;
             output.postedBy = input.postedBy;
             output.postedAgo = input.postedAgo;
-            output.comment = stripHtml.Replace(input.comment, "");
+            output.comment = stripHtml(input.comment);
             output.id = input.id;
             output.points = input.points;
             output.parentId = input.parentId;
@@ -137,6 +163,7 @@ namespace Hacker_News
             this.Dispatcher.BeginInvoke(
                 () =>
                 {
+                    textTextBlock.Text = stripHtml(comments.text);
                     binding.comments = flattenComments(comments.comments);
                     setProgressBar(false);
                 }
