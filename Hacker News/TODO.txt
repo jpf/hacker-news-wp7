@@ -1,7 +1,5 @@
-﻿Fix the browser window to not look terrible.
-
-Make a better Splash Screen, or disable it entirely.
-
-Disable highlighting on the main view?
+﻿Disable highlighting on the main view?
 
 Save JSON to isolated storage, reload when button is pressed, or after 1 minute.
+
+Find a good way to display error messages.

@@ -173,7 +173,7 @@ namespace Hacker_News
             // webBrowserTask.URL = selected_url;
             // webBrowserTask.Show();
             #endregion
-            if (selected.url.StartsWith("http://"))
+            if (selected.url.StartsWith("http"))
             {
                 Browser.url = selected.url;
                 NavigationService.Navigate(new Uri("/Browser.xaml", UriKind.Relative));
