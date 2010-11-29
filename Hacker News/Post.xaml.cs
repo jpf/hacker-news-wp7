@@ -109,19 +109,20 @@ namespace Hacker_News
         {
             List<FlatComment> output = new List<FlatComment>();
             Queue<Comment> queue = new Queue<Comment>(input);
-            Comment car = queue.Dequeue();
+            if (queue.Count == 0)
+            {
+                return output;
+            }
 
+            Comment car = queue.Dequeue();
             output.Add(flattenComment(car, currentDepth));
             if (car.children.Count > 0)
             {
                 output.AddRange(flattenComments(car.children, currentDepth + depthIncrement));
             }
 
-            if (queue.Count > 0)
-            {
-                List<Comment> cdr = new List<Comment>(queue);
-                output.AddRange(flattenComments(cdr, currentDepth));
-            }
+            List<Comment> cdr = new List<Comment>(queue);
+            output.AddRange(flattenComments(cdr, currentDepth));
 
             return output;
         }

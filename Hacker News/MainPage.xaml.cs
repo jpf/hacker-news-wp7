@@ -75,7 +75,7 @@ namespace Hacker_News
                 }
             }
         }
-        public string url 
+        public string url
         {
             get { return this.urlValue.ToString(); }
             set { this.urlValue = new Uri(value); }
@@ -101,22 +101,36 @@ namespace Hacker_News
 
         private void HandleNewsResult(IAsyncResult result)
         {
-            Common common = new Common();
-            var binding = (result.AsyncState as AsyncState).binding as News;
-            StreamReader txt = common.makeStreamReaderFromResult(result);
-
-            News rv = common.deserializeStreamReader<News>(txt);
-            this.Dispatcher.BeginInvoke(
-            () =>
+            try
             {
-                binding.nextId = rv.nextId;
-                binding.version = rv.version;
-                binding.items = rv.items;
-                // FIXME: Shouldn't I be able to do this instead?
-                //binding = processJsonString(txt);
-                setProgressBar(false);
+                Common common = new Common();
+                var binding = (result.AsyncState as AsyncState).binding as News;
+                StreamReader txt = common.makeStreamReaderFromResult(result);
+
+                News rv = common.deserializeStreamReader<News>(txt);
+                this.Dispatcher.BeginInvoke(
+                () =>
+                {
+                    binding.nextId = rv.nextId;
+                    binding.version = rv.version;
+                    binding.items = rv.items;
+                    // FIXME: Shouldn't I be able to do this instead?
+                    //binding = processJsonString(txt);
+                    setProgressBar(false);
+                }
+                );
             }
-            );
+            catch (WebException e)
+            {
+                this.Dispatcher.BeginInvoke(
+                    () =>
+                    {
+                        errorLine.Text = e.Message;
+                        errorLine.Visibility = Visibility.Visible;
+                        setProgressBar(false);
+                    }
+                );
+            }
         }
 
         public void populateBinding(News binding, string Url)

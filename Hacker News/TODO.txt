@@ -1,11 +1,11 @@
-﻿Fix indenting on comments - subtract the depth from the width :(
-
-Disable highlighting on the main view?
-
-Make a better Splash Screen, or disable it entirely.
+﻿Fix local links ("Ask HN", etc)
 
 Fix the browser window to not look terrible.
 
-Add hella error handling
+Fix indenting on comments - subtract the depth from the width :(
+
+Make a better Splash Screen, or disable it entirely.
+
+Disable highlighting on the main view?
 
 Save JSON to isolated storage, reload when button is pressed, or after 1 minute.
