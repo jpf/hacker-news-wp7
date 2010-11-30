@@ -1,0 +1,6 @@
+Application to read Hacker News (news.ycombinator.com) on a Windows Phone 7 device.
+
+Uses James Newton-King's JSON library (json.codeplex.com)
+
+Makes extensive use of Ronnie Roller's Hacker News API (http://api.ihackernews.com/)
+
