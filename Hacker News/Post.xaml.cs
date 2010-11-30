@@ -155,19 +155,31 @@ namespace Hacker_News
 
         private void HandleCommentResult(IAsyncResult result)
         {
-            Common common = new Common();
-            var binding = (result.AsyncState as AsyncState).binding as FlatComments;
-            StreamReader txt = common.makeStreamReaderFromResult(result);
+            try
+            {
+                Common common = new Common();
+                var binding = (result.AsyncState as AsyncState).binding as FlatComments;
+                StreamReader txt = common.makeStreamReaderFromResult(result);
 
-            Comments comments = common.deserializeStreamReader<Comments>(txt);
-            this.Dispatcher.BeginInvoke(
-                () =>
-                {
-                    textTextBlock.Text = stripHtml(comments.text);
-                    binding.comments = flattenComments(comments.comments);
-                    setProgressBar(false);
-                }
-            );
+                Comments comments = common.deserializeStreamReader<Comments>(txt);
+                this.Dispatcher.BeginInvoke(
+                    () =>
+                    {
+                        textTextBlock.Text = stripHtml(comments.text);
+                        binding.comments = flattenComments(comments.comments);
+                        setProgressBar(false);
+                    }
+                );
+            }
+            catch (WebException e)
+            {
+                this.Dispatcher.BeginInvoke(
+                    () =>
+                    {
+                        setProgressBar(false);
+                    }
+                );
+            }
         }
 
         public void populateCommentsBinding(FlatComments binding, string Url)
