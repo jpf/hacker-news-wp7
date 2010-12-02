@@ -1,6 +1,10 @@
 Application to read Hacker News (news.ycombinator.com) on a Windows Phone 7 device.
 
-Uses James Newton-King's JSON library (json.codeplex.com)
+Available on the Zune Marketplace here: http://social.zune.net/redirect?type=phoneApp&id=1bfbf8aa-8cfb-df11-9264-00237de2db9e
 
+Credits:
+Uses James Newton-King's JSON library (json.codeplex.com)
 Makes extensive use of Ronnie Roller's Hacker News API (http://api.ihackernews.com/)
+
+
 
