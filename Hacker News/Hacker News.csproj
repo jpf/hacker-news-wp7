@@ -54,7 +54,9 @@
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Interop" />
-    <Reference Include="Newtonsoft.Json.Silverlight, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json.Silverlight, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>Libraries\Json.NET\Newtonsoft.Json.Silverlight.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -66,6 +68,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Article.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -73,6 +76,7 @@
     <Compile Include="Browser.xaml.cs">
       <DependentUpon>Browser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Entities\News.cs" />
     <Compile Include="Post.xaml.cs">
       <DependentUpon>Post.xaml</DependentUpon>
     </Compile>
